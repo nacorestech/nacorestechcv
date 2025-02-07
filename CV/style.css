@@ -1,0 +1,213 @@
+/* Reset style cơ bản */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f0f0;
+  color: #333;
+  padding: 20px;
+}
+
+/* Container chính với hiệu ứng glow xung quanh */
+.profile-container {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  /* Không dùng overflow:hidden để cho pseudo-element hiển thị */
+}
+
+/* Pseudo-element tạo hiệu ứng gradient glow động */
+.profile-container::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(45deg, #ff0066, #ffcc00, #33ccff, #ff0066);
+  background-size: 400% 400%;
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0.8;
+  animation: gradientAnimation 15s ease infinite;
+  border-radius: 16px;
+}
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Header: chứa ảnh đại diện và tên (ngoài hộp giới thiệu) */
+.header-container {
+  text-align: center;
+  padding: 20px;
+}
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+.name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Hộp giới thiệu (chỉ chứa dòng giới thiệu bản thân), thu hẹp lại */
+.intro-container {
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 0 auto 20px auto;
+  width: 80%;
+  background-color: #fff;
+}
+.intro {
+  font-size: 16px;
+  color: #555;
+  text-align: center;
+}
+
+/* Container cho các nút mạng xã hội: bố trí theo cột dọc */
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+}
+.social-btn {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 15px;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: transform 0.2s, background-color 0.3s;
+  cursor: pointer;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Màu sắc và hiệu ứng cho từng nút */
+.facebook {
+  background-color: #3b5998;
+}
+.facebook:hover {
+  transform: scale(1.05);
+}
+.tiktok {
+  background-color: #010101;
+}
+.tiktok:hover {
+  transform: scale(1.05);
+}
+.instagram {
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
+}
+.instagram:hover {
+  transform: scale(1.05);
+}
+.youtube {
+  background-color: #ff0000;
+}
+.youtube:hover {
+  transform: scale(1.05);
+}
+.qr-btn {
+  background-color: #28a745;
+}
+.qr-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Modal hiển thị mã QR */
+.modal {
+  display: none; /* ẩn mặc định */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  animation: fadeIn 0.3s;
+}
+.close-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+.qr-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive: điều chỉnh kích thước cho mobile */
+@media (max-width: 600px) {
+  .avatar {
+    width: 120px;
+    height: 120px;
+  }
+  .name {
+    font-size: 20px;
+  }
+  .social-btn {
+    font-size: 16px;
+    padding: 12px;
+  }
+  .intro {
+    font-size: 14px;
+  }
+  .intro-container {
+    width: 90%;
+  }
+}
